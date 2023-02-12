@@ -1,9 +1,6 @@
 package info.ryusukeblog.simplesqlbuilder;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 public class InsertCreator {
 
@@ -66,6 +63,11 @@ public class InsertCreator {
         return this;
     }
 
+    public InsertCreator values(Date... values) {
+        this.values.addAll(Arrays.asList(values));
+        return this;
+    }
+
     public InsertCreator values(List<?> values) {
         this.values.addAll(values);
         return this;
@@ -77,10 +79,13 @@ public class InsertCreator {
         for (Iterator<?> iterator = values.iterator();
              iterator.hasNext(); ) {
             Object value = iterator.next();
-            if (value instanceof String) {
+            if (value instanceof java.sql.Date || value instanceof java.sql.Timestamp) {
                 sb.append("'").append(value).append("'");
-            }
-            if (value instanceof Integer || value instanceof Long || value instanceof Boolean || value instanceof Float || value instanceof Double) {
+            } else if (value instanceof java.util.Date) {
+                sb.append("'").append(new java.sql.Date(((Date) value).getTime())).append("'");
+            } else if (value instanceof String) {
+                sb.append("'").append(value).append("'");
+            } else if (value instanceof Integer || value instanceof Long || value instanceof Boolean || value instanceof Float || value instanceof Double) {
                 sb.append(value);
             }
             if (iterator.hasNext()) {

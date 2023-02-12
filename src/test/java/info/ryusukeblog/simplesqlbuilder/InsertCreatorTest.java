@@ -4,7 +4,10 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 class InsertCreatorTest {
@@ -110,5 +113,20 @@ class InsertCreatorTest {
     @Test
     void InsertWithDoubleValues() {
         System.out.println(new InsertCreator().table(table).values(100.1, 120.1).create());
+    }
+
+    @Test
+    void InsertWithJavaUtilDate() {
+        System.out.println(new InsertCreator().table(table).values(new Date(), new Date()).create());
+    }
+
+    @Test
+    void InsertWithJavaSqlDate() {
+        System.out.println(new InsertCreator().table(table).values(new java.sql.Date(Calendar.getInstance().getTimeInMillis()), new java.sql.Date(Calendar.getInstance().getTimeInMillis())).create());
+    }
+
+    @Test
+    void InsertWithJavaSqlTimestamp() {
+        System.out.println(new InsertCreator().table(table).values(new Timestamp(Calendar.getInstance().getTimeInMillis()), new Timestamp(Calendar.getInstance().getTimeInMillis())).create());
     }
 }
