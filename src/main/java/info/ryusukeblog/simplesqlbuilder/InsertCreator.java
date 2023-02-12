@@ -2,23 +2,27 @@ package info.ryusukeblog.simplesqlbuilder;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 public class InsertCreator {
 
     private String table;
     private List<String> columns = new ArrayList<>();
-    private List<String> values = new ArrayList<>();
+    private List<Object> values = new ArrayList<>();
 
     public String create() {
         StringBuilder sb = new StringBuilder();
         sb.append("INSERT INTO ");
         sb.append(table);
-        sb.append("(");
-        sb.append(String.join(",", columns));
-        sb.append(") VALUES ('");
-        sb.append(String.join("','", values));
-        sb.append("');");
+        if (!columns.isEmpty()) {
+            sb.append(" (");
+            sb.append(String.join(", ", columns));
+            sb.append(")");
+        }
+        sb.append(" VALUES (");
+        sb.append(valueBuilder(values));
+        sb.append(");");
         return sb.toString();
     }
 
@@ -42,8 +46,37 @@ public class InsertCreator {
         return this;
     }
 
-    public InsertCreator values(List<String> values) {
+    public InsertCreator values(Integer... values) {
+        this.values.addAll(Arrays.asList(values));
+        return this;
+    }
+
+    public InsertCreator values(Long... values) {
+        this.values.addAll(Arrays.asList(values));
+        return this;
+    }
+
+    public InsertCreator values(List<?> values) {
         this.values.addAll(values);
         return this;
+    }
+
+    private String valueBuilder(List<?> values) {
+
+        StringBuilder sb = new StringBuilder();
+        for (Iterator<?> iterator = values.iterator();
+             iterator.hasNext(); ) {
+            Object value = iterator.next();
+            if (value instanceof String) {
+                sb.append("'").append(value).append("'");
+            }
+            if (value instanceof Integer || value instanceof Long || value instanceof Boolean) {
+                sb.append(value);
+            }
+            if (iterator.hasNext()) {
+                sb.append(", ");
+            }
+        }
+        return sb.toString();
     }
 }
