@@ -29,6 +29,6 @@ String sql = new InsertCreator().table("articles").columns(columns).values(value
  2. Specify by variable length parameter  
  "values" allows variable-length arguments only when the arguments are of the same type.
  ```Java
- String sql = new InsertCreator().table("articles").columns("number_one", "number_two").values(1, 2).create()
+ String sql = new InsertCreator().table("articles").columns("number_one", "number_two").values(1, 2).create();
  // INSERT INTO articles (number_one, number_two) VALUES (1, 2);
   ```
