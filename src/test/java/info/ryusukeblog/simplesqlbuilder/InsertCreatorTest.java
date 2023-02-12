@@ -14,15 +14,12 @@ class InsertCreatorTest {
     private String[] columnArray;
     private List<Object> valueList;
     private Object[] valueArray;
-    private List<String> whereList;
-    private String[] whereArray;
 
     @BeforeEach
     void setUp() {
         table = "articles";
         columnList = new ArrayList<>();
         valueList = new ArrayList<>();
-        whereList = new ArrayList<>();
     }
 
     @AfterEach
@@ -102,5 +99,16 @@ class InsertCreatorTest {
     @Test
     void InsertWithMinusLongValues() {
         System.out.println(new InsertCreator().table(table).values(-10L, -20L).create());
+    }
+
+
+    @Test
+    void InsertWithFloatValues() {
+        System.out.println(new InsertCreator().table(table).values(10.1F, 12.1F).create());
+    }
+
+    @Test
+    void InsertWithDoubleValues() {
+        System.out.println(new InsertCreator().table(table).values(100.1, 120.1).create());
     }
 }

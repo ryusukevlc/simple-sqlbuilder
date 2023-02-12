@@ -56,6 +56,16 @@ public class InsertCreator {
         return this;
     }
 
+    public InsertCreator values(Float... values) {
+        this.values.addAll(Arrays.asList(values));
+        return this;
+    }
+
+    public InsertCreator values(Double... values) {
+        this.values.addAll(Arrays.asList(values));
+        return this;
+    }
+
     public InsertCreator values(List<?> values) {
         this.values.addAll(values);
         return this;
@@ -70,7 +80,7 @@ public class InsertCreator {
             if (value instanceof String) {
                 sb.append("'").append(value).append("'");
             }
-            if (value instanceof Integer || value instanceof Long || value instanceof Boolean) {
+            if (value instanceof Integer || value instanceof Long || value instanceof Boolean || value instanceof Float || value instanceof Double) {
                 sb.append(value);
             }
             if (iterator.hasNext()) {
