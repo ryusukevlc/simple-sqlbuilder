@@ -14,9 +14,7 @@ class InsertCreatorTest {
 
     private String table;
     private List<String> columnList;
-    private String[] columnArray;
     private List<Object> valueList;
-    private Object[] valueArray;
 
     @BeforeEach
     void setUp() {
@@ -35,38 +33,38 @@ class InsertCreatorTest {
         columnList.add("content");
         valueList.add("this is title");
         valueList.add("this is content");
-        System.out.println(new InsertCreator().table(table).columns(columnList).values(valueList).create());
+        System.out.println(SqlBuilder.insert().table(table).columns(columnList).values(valueList).create());
     }
 
     @Test
     void InsertWithOneColumnAndOneStringValue() {
         columnList.add("title");
         valueList.add("this is title");
-        System.out.println(new InsertCreator().table(table).columns(columnList).values(valueList).create());
-        System.out.println(new InsertCreator().table(table).columns("title").values("this is title").create());
+        System.out.println(SqlBuilder.insert().table(table).columns(columnList).values(valueList).create());
+        System.out.println(SqlBuilder.insert().table(table).columns("title").values("this is title").create());
     }
 
     @Test
     void InsertWithOneColumnAndOneIntegerValue() {
         columnList.add("id");
         valueList.add(1);
-        System.out.println(new InsertCreator().table(table).columns(columnList).values(valueList).create());
-        System.out.println(new InsertCreator().table(table).columns("id").values(1).create());
+        System.out.println(SqlBuilder.insert().table(table).columns(columnList).values(valueList).create());
+        System.out.println(SqlBuilder.insert().table(table).columns("id").values(1).create());
     }
 
     @Test
     void InsertWithOneColumnAndOneLongValue() {
         columnList.add("id");
         valueList.add(10L);
-        System.out.println(new InsertCreator().table(table).columns(columnList).values(valueList).create());
-        System.out.println(new InsertCreator().table(table).columns("id").values(10L).create());
+        System.out.println(SqlBuilder.insert().table(table).columns(columnList).values(valueList).create());
+        System.out.println(SqlBuilder.insert().table(table).columns("id").values(10L).create());
     }
 
     @Test
     void InsertWithoutColumns() {
         valueList.add("this is title");
         valueList.add("this is content");
-        System.out.println(new InsertCreator().table(table).values(valueList).create());
+        System.out.println(SqlBuilder.insert().table(table).values(valueList).create());
     }
 
     @Test
@@ -81,52 +79,52 @@ class InsertCreatorTest {
         valueList.add("this is title");
         valueList.add("this is content");
         valueList.add(true);
-        System.out.println(new InsertCreator().table(table).columns(columnList).values(valueList).create());
+        System.out.println(SqlBuilder.insert().table(table).columns(columnList).values(valueList).create());
     }
 
     @Test
     void InsertWithIntegerValues() {
-        System.out.println(new InsertCreator().table(table).values(1, 2).create());
+        System.out.println(SqlBuilder.insert().table(table).values(1, 2).create());
     }
 
     @Test
     void InsertWithMinusValues() {
-        System.out.println(new InsertCreator().table(table).values(-1, -2).create());
+        System.out.println(SqlBuilder.insert().table(table).values(-1, -2).create());
     }
 
     @Test
     void InsertWithLongValues() {
-        System.out.println(new InsertCreator().table(table).values(10L, 20L).create());
+        System.out.println(SqlBuilder.insert().table(table).values(10L, 20L).create());
     }
 
     @Test
     void InsertWithMinusLongValues() {
-        System.out.println(new InsertCreator().table(table).values(-10L, -20L).create());
+        System.out.println(SqlBuilder.insert().table(table).values(-10L, -20L).create());
     }
 
 
     @Test
     void InsertWithFloatValues() {
-        System.out.println(new InsertCreator().table(table).values(10.1F, 12.1F).create());
+        System.out.println(SqlBuilder.insert().table(table).values(10.1F, 12.1F).create());
     }
 
     @Test
     void InsertWithDoubleValues() {
-        System.out.println(new InsertCreator().table(table).values(100.1, 120.1).create());
+        System.out.println(SqlBuilder.insert().table(table).values(100.1, 120.1).create());
     }
 
     @Test
     void InsertWithJavaUtilDate() {
-        System.out.println(new InsertCreator().table(table).values(new Date(), new Date()).create());
+        System.out.println(SqlBuilder.insert().table(table).values(new Date(), new Date()).create());
     }
 
     @Test
     void InsertWithJavaSqlDate() {
-        System.out.println(new InsertCreator().table(table).values(new java.sql.Date(Calendar.getInstance().getTimeInMillis()), new java.sql.Date(Calendar.getInstance().getTimeInMillis())).create());
+        System.out.println(SqlBuilder.insert().table(table).values(new java.sql.Date(Calendar.getInstance().getTimeInMillis()), new java.sql.Date(Calendar.getInstance().getTimeInMillis())).create());
     }
 
     @Test
     void InsertWithJavaSqlTimestamp() {
-        System.out.println(new InsertCreator().table(table).values(new Timestamp(Calendar.getInstance().getTimeInMillis()), new Timestamp(Calendar.getInstance().getTimeInMillis())).create());
+        System.out.println(SqlBuilder.insert().table(table).values(new Timestamp(Calendar.getInstance().getTimeInMillis()), new Timestamp(Calendar.getInstance().getTimeInMillis())).create());
     }
 }
