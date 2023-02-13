@@ -28,6 +28,11 @@ public class InsertCreator {
         return this;
     }
 
+    public InsertCreator table(String table) {
+        this.table = table;
+        return this;
+    }
+
     public InsertCreator columns(String... columns) {
         this.columns.addAll(Arrays.asList(columns));
         return this;

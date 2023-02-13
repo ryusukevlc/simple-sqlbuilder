@@ -33,6 +33,11 @@ public class SelectCreator {
         return this;
     }
 
+    public SelectCreator table(String table) {
+        this.table = table;
+        return this;
+    }
+
     public SelectCreator columns(String... columns) {
         this.columns.addAll(Arrays.asList(columns));
         return this;
