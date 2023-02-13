@@ -28,47 +28,47 @@ class InsertCreatorTest {
     }
 
     @Test
-    void InsertWithAllStrings() {
+    void insertWithAllStrings() {
         columnList.add("title");
         columnList.add("content");
         valueList.add("this is title");
         valueList.add("this is content");
-        System.out.println(SqlBuilder.insert().table(table).columns(columnList).values(valueList).create());
+        System.out.println(SqlBuilder.insert().into(table).columns(columnList).values(valueList).create());
     }
 
     @Test
-    void InsertWithOneColumnAndOneStringValue() {
+    void insertWithOneColumnAndOneStringValue() {
         columnList.add("title");
         valueList.add("this is title");
-        System.out.println(SqlBuilder.insert().table(table).columns(columnList).values(valueList).create());
-        System.out.println(SqlBuilder.insert().table(table).columns("title").values("this is title").create());
+        System.out.println(SqlBuilder.insert().into(table).columns(columnList).values(valueList).create());
+        System.out.println(SqlBuilder.insert().into(table).columns("title").values("this is title").create());
     }
 
     @Test
-    void InsertWithOneColumnAndOneIntegerValue() {
+    void insertWithOneColumnAndOneIntegerValue() {
         columnList.add("id");
         valueList.add(1);
-        System.out.println(SqlBuilder.insert().table(table).columns(columnList).values(valueList).create());
-        System.out.println(SqlBuilder.insert().table(table).columns("id").values(1).create());
+        System.out.println(SqlBuilder.insert().into(table).columns(columnList).values(valueList).create());
+        System.out.println(SqlBuilder.insert().into(table).columns("id").values(1).create());
     }
 
     @Test
-    void InsertWithOneColumnAndOneLongValue() {
+    void insertWithOneColumnAndOneLongValue() {
         columnList.add("id");
         valueList.add(10L);
-        System.out.println(SqlBuilder.insert().table(table).columns(columnList).values(valueList).create());
-        System.out.println(SqlBuilder.insert().table(table).columns("id").values(10L).create());
+        System.out.println(SqlBuilder.insert().into(table).columns(columnList).values(valueList).create());
+        System.out.println(SqlBuilder.insert().into(table).columns("id").values(10L).create());
     }
 
     @Test
-    void InsertWithoutColumns() {
+    void insertWithoutColumns() {
         valueList.add("this is title");
         valueList.add("this is content");
-        System.out.println(SqlBuilder.insert().table(table).values(valueList).create());
+        System.out.println(SqlBuilder.insert().into(table).values(valueList).create());
     }
 
     @Test
-    void InsertDifferentDataTypes() {
+    void insertDifferentDataTypes() {
         columnList.add("id");
         columnList.add("id2");
         columnList.add("title");
@@ -79,52 +79,52 @@ class InsertCreatorTest {
         valueList.add("this is title");
         valueList.add("this is content");
         valueList.add(true);
-        System.out.println(SqlBuilder.insert().table(table).columns(columnList).values(valueList).create());
+        System.out.println(SqlBuilder.insert().into(table).columns(columnList).values(valueList).create());
     }
 
     @Test
-    void InsertWithIntegerValues() {
-        System.out.println(SqlBuilder.insert().table(table).values(1, 2).create());
+    void insertWithIntegerValues() {
+        System.out.println(SqlBuilder.insert().into(table).values(1, 2).create());
     }
 
     @Test
-    void InsertWithMinusValues() {
-        System.out.println(SqlBuilder.insert().table(table).values(-1, -2).create());
+    void insertWithMinusValues() {
+        System.out.println(SqlBuilder.insert().into(table).values(-1, -2).create());
     }
 
     @Test
-    void InsertWithLongValues() {
-        System.out.println(SqlBuilder.insert().table(table).values(10L, 20L).create());
+    void insertWithLongValues() {
+        System.out.println(SqlBuilder.insert().into(table).values(10L, 20L).create());
     }
 
     @Test
-    void InsertWithMinusLongValues() {
-        System.out.println(SqlBuilder.insert().table(table).values(-10L, -20L).create());
+    void insertWithMinusLongValues() {
+        System.out.println(SqlBuilder.insert().into(table).values(-9L, -20L).create());
     }
 
 
     @Test
-    void InsertWithFloatValues() {
-        System.out.println(SqlBuilder.insert().table(table).values(10.1F, 12.1F).create());
+    void insertWithFloatValues() {
+        System.out.println(SqlBuilder.insert().into(table).values(10.1F, 12.1F).create());
     }
 
     @Test
-    void InsertWithDoubleValues() {
-        System.out.println(SqlBuilder.insert().table(table).values(100.1, 120.1).create());
+    void insertWithDoubleValues() {
+        System.out.println(SqlBuilder.insert().into(table).values(100.1, 120.1).create());
     }
 
     @Test
-    void InsertWithJavaUtilDate() {
-        System.out.println(SqlBuilder.insert().table(table).values(new Date(), new Date()).create());
+    void insertWithJavaUtilDate() {
+        System.out.println(SqlBuilder.insert().into(table).values(new Date(), new Date()).create());
     }
 
     @Test
-    void InsertWithJavaSqlDate() {
-        System.out.println(SqlBuilder.insert().table(table).values(new java.sql.Date(Calendar.getInstance().getTimeInMillis()), new java.sql.Date(Calendar.getInstance().getTimeInMillis())).create());
+    void insertWithJavaSqlDate() {
+        System.out.println(SqlBuilder.insert().into(table).values(new java.sql.Date(Calendar.getInstance().getTimeInMillis()), new java.sql.Date(Calendar.getInstance().getTimeInMillis())).create());
     }
 
     @Test
-    void InsertWithJavaSqlTimestamp() {
-        System.out.println(SqlBuilder.insert().table(table).values(new Timestamp(Calendar.getInstance().getTimeInMillis()), new Timestamp(Calendar.getInstance().getTimeInMillis())).create());
+    void insertWithJavaSqlTimestamp() {
+        System.out.println(SqlBuilder.insert().into(table).values(new Timestamp(Calendar.getInstance().getTimeInMillis()), new Timestamp(Calendar.getInstance().getTimeInMillis())).create());
     }
 }

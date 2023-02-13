@@ -1,2 +1,4 @@
-package info.ryusukeblog.simplesqlbuilder;public class DeleteCreator {
+package info.ryusukeblog.simplesqlbuilder;
+
+public class DeleteCreator {
 }

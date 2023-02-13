@@ -13,18 +13,22 @@ public class SelectCreator {
     public String create() {
         StringBuilder sb = new StringBuilder();
         sb.append("SELECT ");
-        sb.append(String.join(",", columns));
-        sb.append(" from ");
+        if (!columns.isEmpty()) {
+            sb.append(String.join(", ", columns));
+        } else {
+            sb.append("*");
+        }
+        sb.append(" FROM ");
         sb.append(table);
         if (!values.isEmpty()) {
-            sb.append(" where ");
+            sb.append(" WHERE ");
             sb.append(String.join(" AND ", values));
         }
         sb.append(";");
         return sb.toString();
     }
 
-    public SelectCreator table(String table) {
+    public SelectCreator from(String table) {
         this.table = table;
         return this;
     }

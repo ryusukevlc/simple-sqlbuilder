@@ -23,7 +23,7 @@ public class InsertCreator {
         return sb.toString();
     }
 
-    public InsertCreator table(String table) {
+    public InsertCreator into(String table) {
         this.table = table;
         return this;
     }
