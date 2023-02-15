@@ -14,6 +14,10 @@ public class SqlBuilder {
         return new UpdateCreator();
     }
 
+    public static UpdateCreator update(String table) {
+        return new UpdateCreator(table);
+    }
+
     public static DeleteCreator delete() {
         return new DeleteCreator();
     }
