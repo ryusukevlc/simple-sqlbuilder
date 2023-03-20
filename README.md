@@ -1,5 +1,5 @@
 # simple-sqlbuilder
-Under development.
+Under development...
 
 The following are the features of this utility class  
 - It can be written in query builder format and returns an SQL string by executing create().
